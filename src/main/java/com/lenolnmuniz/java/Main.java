@@ -4,13 +4,16 @@ import com.lenolnmuniz.java.clients.Client;
 
 public class Main {
     public static void main(String[] args) {
-            Client clientOne = new Client("111.222.333-44"); "lenoln@lenoln.com";"Lenoln B A M Muniz"; "M");
+        Client clientOne = new Client("Lenoln",  "B A M", "Muniz", "111.222.333-44",
+                "06/03/1993",'M', "lenoln@lenoln.com", "Rua tal, número 123, bairro Tal, cidade Tal/MG",
+                "(31) 98922-2771");
 
-            System.out.println(clientOne.toString());
-
-        Client clientTwo = new Client("123.456.789-12"); "exemplo@exemplo.com";"Exemplo Luiza Ferreira";"F");
-
-        System.out.println(clientTwo.toString());
+        System.out.println(clientOne.toString());
 
         }
     }
+
+    /*
+    * Client(String firstName, String middleName, String lastName, String cpf, String bithday,
+                 char gender, String email, String address, String phone)
+    * */

@@ -60,8 +60,8 @@ public class Client {
     }
 
     private SimpleDateFormat defineDateFormat(String format){
-        if(format == ""){
-            return new SimpleDateFormat("dd/MM/YYYY");
+        if("".equals(format)){
+            return new SimpleDateFormat("dd/MM/yyyy");
         } else {
             return new SimpleDateFormat(format);
         }

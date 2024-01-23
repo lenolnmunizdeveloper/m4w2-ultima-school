@@ -34,7 +34,9 @@ public class Client {
     }
 
     private int defineAge() {
-        return restoreCurrentYear() - restoreBirthYear();
+        int currentYear = restoreCurrentYear();
+        int birthYear = restoreBirthYear();
+        return currentYear - birthYear;
     }
 
     private int restoreBirthYear() {

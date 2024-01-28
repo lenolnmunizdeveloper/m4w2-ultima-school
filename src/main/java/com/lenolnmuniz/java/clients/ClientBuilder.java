@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Client {
+public class ClientBuilder {
 
     private String firstName;
     private String middleName;
@@ -18,19 +18,25 @@ public class Client {
     private String address;
     private String phone;
 
-    public Client(String firstName, String middleName, String lastName, String cpf, String bithday,
-                 char gender, String email, String address, String phone) {
+    public ClientBuilder withId(String firstName, String middleName, String lastName, String cpf, String bithday,
+            char gender) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.fullName = firstName +" "+ middleName+" "+lastName;
+        this.fullName = firstName + " " + middleName + " " + lastName;
         this.cpf = cpf;
         this.bithday = bithday;
         this.age = defineAge();
         this.gender = gender;
+
+        return this;
+    }
+
+    public ClientBuilder withContacts(String email, String address, String phone) {
         this.email = email;
         this.address = address;
         this.phone = phone;
+        return this;
     }
 
     private int defineAge() {
@@ -44,22 +50,22 @@ public class Client {
         Date birthdayClient;
         try {
             birthdayClient = defineDateFormat("dd/MM/YYYY").parse(bithday);
-        } catch (ParseException e){
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
         calendar.setTime(birthdayClient);
         return calendar.get(Calendar.YEAR);
     }
 
-    private int restoreCurrentYear(){
+    private int restoreCurrentYear() {
         Calendar calendar = Calendar.getInstance();
         Date today = new Date();
         calendar.setTime(today);
         return calendar.get(Calendar.YEAR);
     }
 
-    private SimpleDateFormat defineDateFormat(String format){
-        if("".equals(format)){
+    private SimpleDateFormat defineDateFormat(String format) {
+        if ("".equals(format)) {
             return new SimpleDateFormat("dd/MM/yyyy");
         } else {
             return new SimpleDateFormat(format);
@@ -154,25 +160,26 @@ public class Client {
         this.phone = phone;
     }
 
-    private String treatmentGender(){
-        if(getGender() == 'M'){
+    private String treatmentGender() {
+        if (getGender() == 'M') {
             return "Sr.";
-        } else if (getGender() == 'F'){
+        } else if (getGender() == 'F') {
             return "Sra.";
         } else {
             return "";
         }
     }
 
-    @Override
-    public String toString() {
-        return treatmentGender() + " " + getFullName() +
-                ", com CPF "+ getCpf() +
-                ", data de nascimento "+ getBithday() +
-                " com idade de "+ getAge() +
-                ", email: " + getEmail() +
-                ", endereço "+ getAddress() +
-                " e telefone "+ getPhone();
+    public String toStringId() {
+        return "Os dados pessoais são: Nome Completo: " + treatmentGender() + " " + getFullName() +
+                ", com CPF " + getCpf() +
+                ", data de nascimento " + getBithday() +
+                " com idade de " + getAge();
     }
 
+    public String toStringContacts() {
+        return "Os dados do contato são: Email: " + getEmail() +
+                ", endereço: " + getAddress() +
+                ", e telefone: " + getPhone();
+    }
 }

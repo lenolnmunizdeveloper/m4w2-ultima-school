@@ -1,1 +1,2 @@
-# m4w2-ultima-school
+# Basic CRM Project
+Developing a Customer Relationship Management (CRM) system.
